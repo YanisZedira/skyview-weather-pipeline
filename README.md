@@ -33,4 +33,33 @@ SkyView est un écosystème data complet composé de 3 briques :
 
 ---
 
-## 🏗️ Architecture
+
+### Technologies utilisées
+
+| Service | Rôle |
+|---------|------|
+| **Cloud Scheduler** | Orchestration (déclenchement quotidien) |
+| **Cloud Function** | ETL Python (Extract, Transform, Load) |
+| **BigQuery** | Data Warehouse (stockage analytique) |
+| **Looker Studio** | Visualisation & Dashboard |
+| **OpenWeatherMap API** | Source données météo |
+| **OpenAQ API** | Source données qualité de l'air |
+
+---
+
+## 🌍 Couverture Géographique
+
+### 22 villes sur 6 continents
+
+| Continent | Villes |
+|-----------|--------|
+| Europe | Paris, Londres, Berlin |
+| Amérique du Nord | New York, Los Angeles, Toronto |
+| Amérique du Sud | São Paulo, Buenos Aires, Lima |
+| Afrique | Lagos, Le Caire, Johannesburg, Alger, Oran, Khenchela |
+| Asie | Tokyo, Shanghai, Mumbai, Djeddah |
+| Océanie | Sydney, Melbourne, Auckland |
+
+---
+
+
