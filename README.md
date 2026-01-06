@@ -63,3 +63,21 @@ SkyView est un écosystème data complet composé de 3 briques :
 ---
 
 
+---
+
+## 🚀 Déploiement
+
+### Prérequis
+- Compte Google Cloud Platform
+- Clé API OpenWeatherMap
+- Python 3.11+
+
+### 1. Déployer la Cloud Function
+
+```bash
+cd pipeline/cloud_function
+gcloud functions deploy collect-weather-daily \
+  --runtime python311 \
+  --trigger-http \
+  --allow-unauthenticated \
+  --region europe-west1
