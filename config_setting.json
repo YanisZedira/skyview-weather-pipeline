@@ -1,0 +1,8 @@
+{
+  "project_id": "skyview-air-1767618956",
+  "dataset_id": "weather_etl",
+  "table_id": "weather_daily",
+  "schedule": "0 12 * * *",
+  "timezone": "Europe/Paris",
+  "data_source": "OpenWeather API"
+}
