@@ -2,6 +2,13 @@ from datetime import datetime, timezone
 from extract.extract_data import extract_weather
 from transform.transform_data import transform_weather
 from load.load_data import load_to_bigquery
+from utils.logger import get_logger
+
+# ==============================
+# LOGGER
+# ==============================
+
+logger = get_logger("MAIN")
 
 # ==============================
 # CONFIGURATION
@@ -58,12 +65,15 @@ CITIES = [
 
 def collect_weather(request):
     """
-    SkyView Weather ETL
-    -------------------
-    1. Extract weather & AQI data from OpenWeather API
+    SkyView Weather ETL - Orchestration
+
+    Steps:
+    1. Extract weather & air quality data from OpenWeather API
     2. Transform data (unit conversion, enrichment, normalization)
     3. Load structured data into BigQuery
     """
+
+    logger.info("SkyView ETL started")
 
     rows = []
     now = datetime.now(timezone.utc)
@@ -71,9 +81,20 @@ def collect_weather(request):
     for city in CITIES:
         weather, air = extract_weather(city, OPENWEATHER_API_KEY)
         row = transform_weather(weather, air, city, now)
-        rows.append(row)
 
-    load_to_bigquery(rows, PROJECT_ID, DATASET_ID, TABLE_ID)
+        if row:
+            rows.append(row)
+        else:
+            logger.warning(f"Row skipped for {city['city']}")
+
+    load_to_bigquery(
+        rows=rows,
+        project_id=PROJECT_ID,
+        dataset_id=DATASET_ID,
+        table_id=TABLE_ID
+    )
+
+    logger.info("SkyView ETL completed successfully")
 
     return {
         "status": "success",
