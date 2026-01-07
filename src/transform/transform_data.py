@@ -1,12 +1,14 @@
-import requests
+from datetime import timezone
 
-def extract_weather(city, api_key):
-    weather = requests.get(
-        f"https://api.openweathermap.org/data/2.5/weather?lat={city['lat']}&lon={city['lon']}&appid={api_key}"
-    ).json()
-
-    air = requests.get(
-        f"https://api.openweathermap.org/data/2.5/air_pollution?lat={city['lat']}&lon={city['lon']}&appid={api_key}"
-    ).json()
-
-    return weather, air
+def transform_weather(weather, air, city, now):
+    return {
+        "city": city["city"],
+        "continent": city["continent"],
+        "date": str(now.date()),
+        "hour": now.hour,
+        "temperature_c": round(weather["main"]["temp"] - 273.15, 2),
+        "humidity": weather["main"]["humidity"],
+        "wind_speed": weather["wind"]["speed"],
+        "air_quality_index": air["list"][0]["main"]["aqi"],
+        "ingestion_timestamp": now.isoformat()
+    }
