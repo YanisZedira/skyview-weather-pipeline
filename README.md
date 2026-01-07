@@ -6,8 +6,7 @@
 
 > Système complet de surveillance météorologique et de qualité de l'air à l'échelle mondiale, avec pipeline ETL automatisée, dashboard analytique et application grand public.
 
-![SkyView Architecture](<img width="1536" height="1024" alt="ChatGPT Image 7 janv  2026, 10_27_19" src="https://github.com/user-attachments/assets/345aeb02-bbfa-4735-a4a2-8446deaa7e50" />
-)
+![SkyView Architecture](https://github.com/user-attachments/assets/345aeb02-bbfa-4735-a4a2-8446deaa7e50)
 
 ---
 
